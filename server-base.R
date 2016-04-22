@@ -136,6 +136,7 @@ shinyServer(function(input, output, session){
 
       if (event$group == "centres"){
         leafletProxy("map") %>% addPolygons(data = toPlot$zones[toPlot$z$geo_code == id,],
+                                            weight = 2,
                                             fill = F,
                                             color = getLineColour("centres") ,
                                             opacity = 0.7,
@@ -143,6 +144,7 @@ shinyServer(function(input, output, session){
       } else if (event$group == "zones"){
 
         leafletProxy("map") %>% addPolygons(data = toPlot$zones[toPlot$z$geo_code == id,],
+                                            weight = 2,
                                             fill = FALSE,
                                             color = "black" ,
                                             opacity = 0.7 ,
@@ -185,7 +187,6 @@ shinyServer(function(input, output, session){
     input$scenario
     input$map_base
     region$current
-    input$transparent_zones
 
     leafletProxy("map")  %>% clearGroup(., "straight_line") %>%
       clearGroup(., "quieter_route") %>% clearGroup(., "faster_route") %>% clearGroup(., "route_network") %>%
@@ -224,7 +225,7 @@ shinyServer(function(input, output, session){
     popup <- if(showZonePopup) zonePopup(toPlot$zones, input$scenario, zoneAttr())
     leafletProxy("map")  %>%  clearGroup(., "zones") %>% clearGroup(., "centres") %>% clearGroup(., "regionName") %>%
       addPolygons(.,  data = toPlot$zones
-                  , weight = 2
+                  , weight = 1.5
                   , fillOpacity = transpRate()
                   , opacity = 0.2
                   , fillColor = getColourRamp(zcols, toPlot$zones[[zoneData()]])
@@ -255,7 +256,7 @@ shinyServer(function(input, output, session){
   })
 
   transpRate <- reactive({
-    if (input$transparent_zones | input$map_base == 'satellite' | input$map_base == 'IMD') 0 else 0.7
+    if (input$map_base == 'satellite' | input$map_base == 'IMD') 0 else 0.4
   })
 
   # These are redundant as there is currently no option to visualize the scenario increase
