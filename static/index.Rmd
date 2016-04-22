@@ -22,4 +22,4 @@ The cycling trips can be allocated to the road network, based on the fastest cyc
 
 Users can select different overall cycling scenarios, such as ‘Go Dutch’ or ‘Ebikes’, and can then see what this might mean for cycling levels in each small area and along the network. The model estimates cycling potential based upon trip distances and hilliness. Therefore, it highlights the greatest unmet potential in areas that currently have high numbers of short trips in relatively flat areas but where people are not currently cycling.
 
-Currently the PCT only shows commuting trips but additional layers are planned.  See [the about page](about.html) for more information.
+Currently the PCT only shows commuting trips but additional layers are planned.  See [the about page](about.html) for more information. There is also a PCT [blog](http://pct.bike/wp/).
