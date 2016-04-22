@@ -133,7 +133,7 @@ shinyServer(function(input, output, session){
       idGroupName <- unlist(strsplit(event$id, "-"))
       id <- idGroupName[1]
       groupName <- idGroupName[2]
-
+      leafletProxy("map") %>% removeShape('highlighted')
       if (event$group == "centres"){
         leafletProxy("map") %>% addPolygons(data = toPlot$zones[toPlot$z$geo_code == id,],
                                             weight = 2,
@@ -142,7 +142,6 @@ shinyServer(function(input, output, session){
                                             opacity = 0.7,
                                             layerId = "highlighted")
       } else if (event$group == "zones"){
-
         leafletProxy("map") %>% addPolygons(data = toPlot$zones[toPlot$z$geo_code == id,],
                                             weight = 2,
                                             fill = FALSE,
